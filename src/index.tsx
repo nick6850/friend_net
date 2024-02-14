@@ -9,20 +9,14 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="contact" element={<App />} />
-      <Route
-        path="dashboard"
-        element={<App />}
-        loader={({ request }) =>
-          fetch("/api/dashboard.json", {
-            signal: request.signal,
-          })
-        }
-      />
+      <Route path="login" element={<Login />} />
+      <Route path="dashboard" element={<Dashboard />} />
     </Route>
   )
 );
