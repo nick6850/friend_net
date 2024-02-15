@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
-
-interface Credentials {
-  email: string;
-  password: string;
-}
+import { Credentials } from "../../types/types";
+import Button from "../../components/Button/Button";
 
 function Login() {
   const [credentials, setCredentials] = useState<Credentials>({
@@ -27,9 +24,8 @@ function Login() {
     }));
   };
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleLogin = (): void => {
     setError("");
-    event.preventDefault();
     if (
       credentials.email === "admin@friendnet.com" &&
       credentials.password === "admin"
@@ -51,7 +47,7 @@ function Login() {
   }
 
   return (
-    <form className={styles.container} onSubmit={handleLogin}>
+    <form className={styles.container}>
       <label>
         Ваш email:
         <input
@@ -72,7 +68,9 @@ function Login() {
         />
       </label>
       <br />
-      <button type="submit">Войти</button>
+      <Button handleClick={handleLogin} size="medium" color="blue">
+        Войти
+      </Button>
       {error && <div className={styles.error}>{error}</div>}
     </form>
   );
