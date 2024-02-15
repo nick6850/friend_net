@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
 import styles from "./Login.module.scss";
 import { Credentials } from "../../types/types";
 import Button from "../../components/Button/Button";
@@ -9,10 +9,10 @@ function Login() {
     email: "",
     password: "",
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [error, setError] = useState("");
+  const [isLoggedIn, toggleIsLoggedIn] =
+    useOutletContext<[boolean, () => void]>();
 
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -31,20 +31,19 @@ function Login() {
       credentials.email === "admin@friendnet.com" &&
       credentials.password === "admin"
     ) {
-      setIsLoggedIn(true);
+      toggleIsLoggedIn();
     } else {
       setError("Неверный логин или пароль");
     }
   };
 
   const handleLogout = (): void => {
-    setIsLoggedIn(false);
+    toggleIsLoggedIn();
     setCredentials({ email: "", password: "" });
   };
 
   if (isLoggedIn) {
-    navigate("/home");
-    return null;
+    return <Navigate to="/login" />;
   }
 
   return (
