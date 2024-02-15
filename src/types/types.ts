@@ -17,7 +17,7 @@ export interface ButtonProps {
   handleClick: (event: React.FormEvent) => void;
 }
 
-export interface Friend {
+export interface FriendType {
   gender: string;
   name: {
     title: string;

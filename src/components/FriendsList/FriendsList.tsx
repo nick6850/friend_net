@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Friend } from "../../types/types";
+import { FriendType } from "../../types/types";
 import style from "./FriendsList.module.scss";
 import Button from "../Button/Button";
 import { deleteFriend } from "../../helpers/friendsHelper";
+import { Link } from "react-router-dom";
 
 export default function FriendsList() {
   const storedFriendsList = JSON.parse(
     localStorage.getItem("friendsList") || "[]"
   );
-  const [friendsList, setFriendsList] = useState<Friend[]>(storedFriendsList);
+  const [friendsList, setFriendsList] =
+    useState<FriendType[]>(storedFriendsList);
 
   useEffect(() => {
     const fetchFriendsList = async () => {
@@ -50,10 +52,8 @@ export default function FriendsList() {
               src={friend.picture.thumbnail}
               alt={`Profile of ${friend.name.first} ${friend.name.last}`}
             />
-            <span className={style.name}>
-              {friend.name.first} {friend.name.last}
-            </span>
-
+            <span className={style.name}>{friend.name.first}</span>
+            <Link to={"friend/" + friend.login.username}>Подробнее</Link>
             <Button
               handleClick={() =>
                 deleteFriend(friend.login.uuid, friendsList, setFriendsList)

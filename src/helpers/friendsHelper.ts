@@ -1,9 +1,9 @@
-import { Friend } from "../types/types";
+import { FriendType } from "../types/types";
 
 export function deleteFriend(
   friendId: string,
-  friendsList: Friend[],
-  setFriendsList: React.Dispatch<React.SetStateAction<Friend[]>>
+  friendsList: FriendType[],
+  setFriendsList: React.Dispatch<React.SetStateAction<FriendType[]>>
 ) {
   const updatedFriendsList = friendsList.filter(
     (friend) => friend.login.uuid !== friendId
