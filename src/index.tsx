@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import "./index.scss";
 
 import {
   createBrowserRouter,
@@ -9,14 +8,17 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+
+//pages
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import Layout from "./layout/Layout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="/" element={<Layout />}>
       <Route path="login" element={<Login />} />
-      <Route path="dashboard" element={<Dashboard />} />
+      <Route path="home" element={<Home />} />
     </Route>
   )
 );
