@@ -3,6 +3,7 @@ import style from "./Home.module.scss";
 import FriendsList from "../../components/FriendsList/FriendsList";
 import { Navigate, useOutletContext } from "react-router";
 import { AuthState } from "../../types/types";
+import Info from "../../components/Info/Info";
 
 const Home = () => {
   const { isLoggedIn } = useOutletContext<AuthState>();
@@ -11,7 +12,12 @@ const Home = () => {
     return <Navigate to="/login" />;
   }
 
-  return <FriendsList />;
+  return (
+    <>
+      <Info />
+      <FriendsList />
+    </>
+  );
 };
 
 export default Home;
