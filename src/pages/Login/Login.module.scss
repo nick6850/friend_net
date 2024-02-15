@@ -1,4 +1,4 @@
-.container {
+.form {
   max-width: 400px;
   margin: 3rem auto;
 
@@ -18,5 +18,13 @@
   .error {
     color: rgb(123, 33, 33);
     margin-top: 0.6rem;
+  }
+
+  .helper {
+    width: fit-content;
+    border: 1px solid black;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    font-size: 0.8rem;
   }
 }
