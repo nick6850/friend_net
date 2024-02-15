@@ -24,7 +24,8 @@ function Login() {
     }));
   };
 
-  const handleLogin = (): void => {
+  const handleLogin = (e: React.FormEvent): void => {
+    e.preventDefault();
     setError("");
     if (
       credentials.email === "admin@friendnet.com" &&
@@ -47,7 +48,7 @@ function Login() {
   }
 
   return (
-    <form className={styles.container}>
+    <form className={styles.form}>
       <label>
         Ваш email:
         <input
@@ -57,7 +58,6 @@ function Login() {
           onChange={handleInputChange}
         />
       </label>
-      <br />
       <label>
         Пароль:
         <input
@@ -67,7 +67,7 @@ function Login() {
           onChange={handleInputChange}
         />
       </label>
-      <br />
+
       <Button handleClick={handleLogin} size="medium" color="blue">
         Войти
       </Button>
