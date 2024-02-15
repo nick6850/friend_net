@@ -1,20 +1,39 @@
 import { Outlet } from "react-router";
 import styles from "./Layout.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Credentials } from "../types/types";
+import Button from "../components/Button/Button";
 
 function Layout() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
+  const storedName = localStorage.getItem("userName");
+  const parsedName = storedName ? JSON.parse(storedName) : "";
+
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(parsedName) || false);
+  const [userName, setUserName] = useState(parsedName);
 
   function toggleIsLoggedIn() {
     setIsLoggedIn((prevIsLoggedIn) => !prevIsLoggedIn);
   }
 
+  useEffect(() => {
+    if (userName) {
+      localStorage.setItem("userName", JSON.stringify(userName));
+    }
+  }, [userName]);
+
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
         <div className={styles.logo}>FriendNet</div>
+        {isLoggedIn ? (
+          <div className={styles.logout}>
+            <Button handleClick={toggleIsLoggedIn} size="medium" color="red">
+              Разлогиниться
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </header>
       <main>
         <Outlet

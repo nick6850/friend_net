@@ -13,12 +13,14 @@ import {
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
+import Friend from "./pages/Friend/Friend";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
+      <Route path="friend/:username" element={<Friend />} />
     </Route>
   )
 );

@@ -16,4 +16,10 @@ footer {
   height: 60px;
   padding: 0 20px;
   background-color: #c4c4c4;
+  position: relative;
+
+  .logout {
+    position: absolute;
+    right: 1rem;
+  }
 }
