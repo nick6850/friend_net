@@ -2,12 +2,11 @@ import style from "./Home.module.scss";
 
 import FriendsList from "../../components/FriendsList/FriendsList";
 import { Navigate, useOutletContext } from "react-router";
+import { AuthState } from "../../types/types";
 
 const Home = () => {
-  const [isLoggedIn, toggleIsLoggedIn] =
-    useOutletContext<[boolean, () => void]>();
+  const { isLoggedIn } = useOutletContext<AuthState>();
 
-  console.log(isLoggedIn);
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }

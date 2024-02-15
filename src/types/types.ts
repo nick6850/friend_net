@@ -1,6 +1,13 @@
 export interface Credentials {
-  email: string;
+  name: string;
   password: string;
+}
+
+export interface AuthState {
+  isLoggedIn: boolean;
+  toggleIsLoggedIn: () => void;
+  userName: string;
+  setUserName: (name: string) => void;
 }
 
 export interface ButtonProps {

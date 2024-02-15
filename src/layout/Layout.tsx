@@ -1,9 +1,11 @@
 import { Outlet } from "react-router";
 import styles from "./Layout.module.scss";
 import { useState } from "react";
+import { Credentials } from "../types/types";
 
 function Layout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
 
   function toggleIsLoggedIn() {
     setIsLoggedIn((prevIsLoggedIn) => !prevIsLoggedIn);
@@ -15,7 +17,9 @@ function Layout() {
         <div className={styles.logo}>FriendNet</div>
       </header>
       <main>
-        <Outlet context={[isLoggedIn, toggleIsLoggedIn]} />
+        <Outlet
+          context={{ isLoggedIn, toggleIsLoggedIn, userName, setUserName }}
+        />
       </main>
       <footer className={styles.footer}>
         <div className={styles.footerText}>

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Navigate, useOutletContext } from "react-router-dom";
 import styles from "./Login.module.scss";
-import { Credentials } from "../../types/types";
+import { AuthState, Credentials } from "../../types/types";
 import Button from "../../components/Button/Button";
 
 function Login() {
+  const { isLoggedIn, toggleIsLoggedIn, setUserName } =
+    useOutletContext<AuthState>();
   const [credentials, setCredentials] = useState<Credentials>({
-    email: "",
+    name: "",
     password: "",
   });
-  const [isLoggedIn, toggleIsLoggedIn] =
-    useOutletContext<[boolean, () => void]>();
 
   const [error, setError] = useState("");
 
@@ -27,34 +27,30 @@ function Login() {
   const handleLogin = (e: React.FormEvent): void => {
     e.preventDefault();
     setError("");
-    if (
-      credentials.email === "admin@friendnet.com" &&
-      credentials.password === "admin"
-    ) {
+    if (credentials.name.length > 5 && credentials.password.length > 5) {
+      setUserName(credentials.name);
+      setCredentials({ name: "", password: "" });
       toggleIsLoggedIn();
     } else {
-      setError("Неверный логин или пароль");
+      setError("Имя или пароль введены неверно");
     }
   };
 
-  const handleLogout = (): void => {
-    toggleIsLoggedIn();
-    setCredentials({ email: "", password: "" });
-  };
-
   if (isLoggedIn) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return (
     <form className={styles.form}>
       <label>
-        Ваш email:
+        Твоё имя:
         <input
-          type="email"
-          name="email"
-          value={credentials.email}
+          type="text"
+          name="name"
+          value={credentials.name}
           onChange={handleInputChange}
+          required
+          minLength={5}
         />
       </label>
       <label>
@@ -64,6 +60,8 @@ function Login() {
           name="password"
           value={credentials.password}
           onChange={handleInputChange}
+          required
+          minLength={5}
         />
       </label>
 
