@@ -13,6 +13,10 @@ function Layout() {
 
   function toggleIsLoggedIn() {
     setIsLoggedIn((prevIsLoggedIn) => !prevIsLoggedIn);
+    if (!isLoggedIn) {
+      localStorage.removeItem("userName");
+      localStorage.removeItem("friendsList");
+    }
   }
 
   useEffect(() => {
