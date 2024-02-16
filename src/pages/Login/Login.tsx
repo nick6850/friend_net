@@ -27,7 +27,7 @@ function Login() {
   const handleLogin = (e: React.FormEvent): void => {
     e.preventDefault();
     setError("");
-    if (credentials.name.length > 5 && credentials.password.length > 5) {
+    if (credentials.name.length >= 3 && credentials.password.length >= 5) {
       setUserName(credentials.name);
       setCredentials({ name: "", password: "" });
       toggleIsLoggedIn();
@@ -50,7 +50,7 @@ function Login() {
           value={credentials.name}
           onChange={handleInputChange}
           required
-          minLength={5}
+          minLength={3}
         />
       </label>
       <label>
