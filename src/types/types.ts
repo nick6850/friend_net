@@ -5,9 +5,8 @@ export interface Credentials {
 
 export interface AuthState {
   isLoggedIn: boolean;
-  toggleIsLoggedIn: () => void;
+  toggleIsLoggedIn: (isLoggedIn: boolean, name: string) => void;
   userName: string;
-  setUserName: (name: string) => void;
 }
 
 export interface ButtonProps {

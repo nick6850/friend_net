@@ -5,8 +5,7 @@ import { AuthState, Credentials } from "../../types/types";
 import Button from "../../components/Button/Button";
 
 function Login() {
-  const { isLoggedIn, toggleIsLoggedIn, setUserName } =
-    useOutletContext<AuthState>();
+  const { isLoggedIn, toggleIsLoggedIn } = useOutletContext<AuthState>();
   const [credentials, setCredentials] = useState<Credentials>({
     name: "",
     password: "",
@@ -28,9 +27,8 @@ function Login() {
     e.preventDefault();
     setError("");
     if (credentials.name.length >= 3 && credentials.password.length >= 5) {
-      setUserName(credentials.name);
+      toggleIsLoggedIn(true, credentials.name);
       setCredentials({ name: "", password: "" });
-      toggleIsLoggedIn();
     } else {
       setError("Имя или пароль введены неверно");
     }

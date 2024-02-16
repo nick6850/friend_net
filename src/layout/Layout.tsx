@@ -3,27 +3,10 @@ import styles from "./Layout.module.scss";
 import { useEffect, useState } from "react";
 import { Credentials } from "../types/types";
 import Button from "../components/Button/Button";
+import useLoginStatus from "../hooks/useLoginStatus";
 
 function Layout() {
-  const storedName = localStorage.getItem("userName");
-  const parsedName = storedName ? JSON.parse(storedName) : "";
-
-  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(parsedName) || false);
-  const [userName, setUserName] = useState(parsedName);
-
-  function toggleIsLoggedIn() {
-    setIsLoggedIn((prevIsLoggedIn) => !prevIsLoggedIn);
-    if (!isLoggedIn) {
-      localStorage.removeItem("userName");
-      localStorage.removeItem("friendsList");
-    }
-  }
-
-  useEffect(() => {
-    if (userName) {
-      localStorage.setItem("userName", JSON.stringify(userName));
-    }
-  }, [userName]);
+  const { isLoggedIn, toggleIsLoggedIn, userName } = useLoginStatus();
 
   return (
     <div className={styles.layout}>
@@ -31,7 +14,11 @@ function Layout() {
         <div className={styles.logo}>FriendNet</div>
         {isLoggedIn ? (
           <div className={styles.logout}>
-            <Button handleClick={toggleIsLoggedIn} size="medium" color="red">
+            <Button
+              handleClick={() => toggleIsLoggedIn(false)}
+              size="medium"
+              color="red"
+            >
               Разлогиниться
             </Button>
           </div>
@@ -40,9 +27,7 @@ function Layout() {
         )}
       </header>
       <main>
-        <Outlet
-          context={{ isLoggedIn, toggleIsLoggedIn, userName, setUserName }}
-        />
+        <Outlet context={{ isLoggedIn, toggleIsLoggedIn, userName }} />
       </main>
       <footer className={styles.footer}>
         <div className={styles.footerText}>
