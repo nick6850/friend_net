@@ -10,11 +10,13 @@ export interface AuthState {
   setUserName: (name: string) => void;
 }
 
-export interface ButtonProps {
+// button: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   size?: "small" | "medium" | "large";
   color?: "blue" | "green" | "red";
-  handleClick: (event: React.FormEvent) => void;
+  handleClick: (event: React.MouseEventHandler<HTMLButtonElement>) => void;
 }
 
 export interface FriendType {

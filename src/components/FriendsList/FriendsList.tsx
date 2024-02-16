@@ -6,7 +6,7 @@ import { deleteFriend } from "../../helpers/friendsHelper";
 import { Link } from "react-router-dom";
 
 export default function FriendsList() {
-  const storedFriendsList = JSON.parse(
+  const storedFriendsList: FriendType[] = JSON.parse(
     localStorage.getItem("friendsList") || "[]"
   );
   const [friendsList, setFriendsList] =

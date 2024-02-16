@@ -24,8 +24,10 @@ function Login() {
     }));
   };
 
-  const handleLogin = (e: React.FormEvent): void => {
-    e.preventDefault();
+  const handleLogin = (
+    e: React.MouseEventHandler<HTMLButtonElement> | undefined
+  ): void => {
+    // e.preventDefault();
     setError("");
     if (credentials.name.length >= 3 && credentials.password.length >= 5) {
       setUserName(credentials.name);
