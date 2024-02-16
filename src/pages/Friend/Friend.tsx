@@ -16,7 +16,6 @@ function Friend() {
         console.log(friend.id.value);
         return friend.login.username === username;
       });
-      console.log(friend);
       setFriend(friend);
     }
   }, []);
