@@ -11,6 +11,7 @@ export default function FriendsList() {
   );
   const [friendsList, setFriendsList] =
     useState<FriendType[]>(storedFriendsList);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchFriendsList = async () => {
@@ -21,6 +22,7 @@ export default function FriendsList() {
         localStorage.setItem("friendsList", JSON.stringify(fetchedFriendsList));
 
         setFriendsList(fetchedFriendsList);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching friends list:", error);
       }
@@ -30,6 +32,7 @@ export default function FriendsList() {
     if (storedFriendsList) {
       setFriendsList(JSON.parse(storedFriendsList));
     } else {
+      setIsLoading(true);
       fetchFriendsList();
     }
   }, []);
@@ -38,8 +41,16 @@ export default function FriendsList() {
     localStorage.setItem("friendsList", JSON.stringify(friendsList));
   }, [friendsList]);
 
-  if (storedFriendsList.length === 0) {
-    return <div>У вас нет друзей :(</div>;
+  if (isLoading) {
+    return (
+      <div className={style.loading}>
+        Буквально пару секунд, мы сейчас загрузим твоих друзей
+      </div>
+    );
+  }
+
+  if (friendsList.length === 0) {
+    return <div className={style.no_friends}>У вас нет друзей :(</div>;
   }
 
   return (
