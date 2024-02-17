@@ -14,6 +14,7 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Layout from "./layout/Layout";
 import Friend from "./pages/Friend/Friend";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="friend/:username" element={<Friend />} />
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
