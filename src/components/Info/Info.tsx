@@ -27,7 +27,7 @@ function Info() {
         Если предпочитаешь отображение года в другом формате, нажми на
         <Button
           color={isChineseFormat ? "green" : "blue"}
-          handleClick={toggleChineseFormat}
+          onClick={toggleChineseFormat}
           size="small"
         >
           кнопку

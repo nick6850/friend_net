@@ -32,7 +32,7 @@ export default function FriendsList() {
             <span className={style.name}>{friend.name.first}</span>
             <Link to={"friend/" + friend.login.username}>Подробнее</Link>
             <Button
-              handleClick={() =>
+              onClick={() =>
                 deleteFriend(friend.login.uuid, friendsList, setFriendsList)
               }
               size="small"

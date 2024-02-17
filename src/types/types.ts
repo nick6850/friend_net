@@ -13,7 +13,7 @@ export interface ButtonProps {
   children?: React.ReactNode;
   size?: "small" | "medium" | "large";
   color?: "blue" | "green" | "red";
-  handleClick: (event: React.FormEvent) => void;
+  onClick?: (event: React.MouseEvent | undefined) => void;
 }
 
 export interface FriendType {

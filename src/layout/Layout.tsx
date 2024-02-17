@@ -18,7 +18,7 @@ function Layout() {
         {isLoggedIn ? (
           <div className={styles.logout}>
             <Button
-              handleClick={() => toggleIsLoggedIn(false)}
+              onClick={() => toggleIsLoggedIn(false)}
               size="medium"
               color="red"
             >

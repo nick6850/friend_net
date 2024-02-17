@@ -23,7 +23,7 @@ function Login() {
     }));
   };
 
-  const handleLogin = (e: React.FormEvent): void => {
+  const handleLogin = (e: React.MouseEvent<Element, MouseEvent>): void => {
     e.preventDefault();
     setError("");
     if (credentials.name.length >= 3 && credentials.password.length >= 5) {
@@ -63,7 +63,7 @@ function Login() {
         />
       </label>
 
-      <Button handleClick={handleLogin} size="medium" color="blue">
+      <Button onClick={handleLogin} size="medium" color="blue">
         Войти
       </Button>
       {error && <div className={styles.error}>{error}</div>}
