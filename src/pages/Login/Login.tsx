@@ -30,7 +30,7 @@ function Login() {
       toggleIsLoggedIn(true, credentials.name);
       setCredentials({ name: "", password: "" });
     } else {
-      setError("Имя или пароль введены неверно");
+      setError("Имя или пароль слишком короткие :(");
     }
   };
 
@@ -52,7 +52,7 @@ function Login() {
         />
       </label>
       <label>
-        Пароль:
+        Пароль :
         <input
           type="password"
           name="password"

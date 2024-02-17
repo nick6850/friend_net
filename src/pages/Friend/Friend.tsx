@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { FriendType } from "../../types/types";
+import { Navigate, useOutletContext, useParams } from "react-router";
+import { AuthState, FriendType } from "../../types/types";
 import style from "./Friend.module.scss";
 import { Link } from "react-router-dom";
 
 function Friend() {
   const { username } = useParams();
   const [friend, setFriend] = useState<FriendType>();
+  const { isLoggedIn } = useOutletContext<AuthState>();
 
   useEffect(() => {
     const currentFriends = localStorage.getItem("friendsList");
@@ -19,6 +20,10 @@ function Friend() {
       setFriend(friend);
     }
   }, []);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   if (!friend) {
     return (
