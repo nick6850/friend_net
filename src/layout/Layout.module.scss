@@ -33,6 +33,10 @@ footer {
     flex: 1;
     text-align: center;
 
+    @media (max-width: 650px) {
+      flex: 0;
+    }
+
     span {
       font-size: 1.8rem;
     }
