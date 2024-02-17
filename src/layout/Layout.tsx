@@ -1,7 +1,5 @@
 import { Outlet } from "react-router";
 import styles from "./Layout.module.scss";
-import { useEffect, useState } from "react";
-import { Credentials } from "../types/types";
 import Button from "../components/Button/Button";
 import useLoginStatus from "../hooks/useLoginStatus";
 
@@ -11,7 +9,12 @@ function Layout() {
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <div className={styles.logo}>FriendNet</div>
+        <div className={styles.logo}>
+          <div>
+            <span>🤗</span> FriendNet
+          </div>
+          <div className={styles.slogan}>Будь с друзьями 24/7</div>
+        </div>
         {isLoggedIn ? (
           <div className={styles.logout}>
             <Button

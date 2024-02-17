@@ -16,13 +16,20 @@ function Friend() {
         console.log(friend.id.value);
         return friend.login.username === username;
       });
-      console.log(friend);
       setFriend(friend);
     }
   }, []);
 
   if (!friend) {
-    return <div>Запрошенный друг не найден</div>;
+    return (
+      <div className={style["no-friend"]}>
+        <span className={style["warning"]}>Запрошенный друг не найден :(</span>
+        <br />
+        <span>
+          <Link to="/">Вернуться назад</Link>
+        </span>
+      </div>
+    );
   }
 
   return (
