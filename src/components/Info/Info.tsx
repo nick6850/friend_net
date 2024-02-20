@@ -28,7 +28,7 @@ function Info() {
         <Button
           color={isChineseFormat ? "green" : "blue"}
           onClick={toggleChineseFormat}
-          size="small"
+          size="medium"
         >
           кнопку
         </Button>
